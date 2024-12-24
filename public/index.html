@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <title>Mark Saban - Home</title>
+    <style>
+        @import url("webfonts/SourceSansPro_Regular/stylesheet.css");
+        @import url("webfonts/OpenSans_Light/stylesheet.css");
+        @import url("webfonts/ZillaSlab_Regular/stylesheet.css");
+        .hvr-underline-from-center {
+            display: inline-block;
+            vertical-align: middle;
+            -webkit-transform: perspective(1px) translateZ(0);
+            transform: perspective(1px) translateZ(0);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+            position: relative;
+            overflow: hidden;
+	    }
+        .hvr-underline-from-center:before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            left: 51%;
+            right: 51%;
+            bottom: 0;
+            background-color: white;
+            height: 2px;
+            -webkit-transition-property: left, right;
+            transition-property: left, right;
+            -webkit-transition-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-timing-function: ease-out;
+            transition-timing-function: ease-out;
+        }
+        .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+            left: 0;
+            right: 0;
+	    }
+        .button {
+		    font-family: 'ZillaSlab Regular';
+            width: auto;
+            height: 50px;
+            font-size: 26px;
+            text-align: center;
+            padding-top: 6%;
+            padding-bottom: 0%;
+            margin: 1%;
+            margin-right: 4%;
+            margin-left: 4%;
+            margin-bottom: 0%;
+            flex: 1;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            width: 2000px;
+        }
+        #bar {
+            font-family: 'ZillaSlab Regular';
+            margin: 2%;
+            margin-top: 1%;
+            padding-right: 5%;
+            height: 150px;
+            width: auto;
+            display: flex;
+        }
+        #t {
+		    text-decoration: none;
+		    color: black;
+	    }
+        #profile {
+            padding-left: 8%; 
+            margin-right: 2%;
+            padding-top: 2%;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        #h1 {
+            line-height: 1.2; font-family: 'ZillaSlab Regular'
+        }
+        #h2 {
+            line-height: 1.5;
+            font-family: 'OpenSans Light';
+            font-size: 24px;
+        }
+        .grid-container {
+            width: 75%;
+            display: grid;
+            height: 100%;
+            grid-template-columns: 23% 24% 25% 22%;
+            grid-template-rows: 255px 270px 200px;
+            gap: 2% 2%;
+            grid-template-areas:
+                "img info main-1 main-1"
+                "img main-3 main-3 main-3"
+                "main-2 main-2 main-2 main-2";
+            margin-left: 10%; margin-right: 10%; margin-top: 4%;
+        }
+        @media screen and (max-width: 946px) {
+            .button {
+                padding-top: 4%;
+            }
+        }
+        @media screen and (max-width: 600px) {
+            .row {
+                flex-direction: column;
+            }
+            #bar {
+                height: 200px;
+            }
+            #profile {
+                padding-top: 8%;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            #profile {
+                padding-left: 1%;
+                margin-right: 0%;
+                /*background-color: blue;*/
+            }
+            .button {
+                font-size: 22px;
+                padding-left: 0%;
+                margin-left: 0%;
+                /*background-color: red;*/
+            }
+            #bar {
+                margin-top: 8%;
+            }
+            .home {
+                padding-top: 2%;
+            }
+        }
+
+        @media screen and (max-width: 1815px) {
+            .grid-container {
+                gap: 3% 4%;
+            }
+        }
+        @media screen and (max-width: 1676px) {
+            .grid-container {
+                gap: 4% 5%;
+            }
+        }
+        @media screen and (max-width: 1536px) {
+            .grid-container {
+                gap: 5% 2%;
+                grid-template-columns: 30% 25% 24% 16%;
+            }
+        }
+        @media screen and (max-width: 1367px) {
+            .grid-container {
+                grid-template-areas:
+                    "img info info info"
+                    "img main-1 main-1 main-1"
+                    "main-3 main-3 main-3 main-3"
+                    "main-2 main-2 main-2 main-2";
+                gap: 2% 2%;
+                grid-template-columns: 32% 16% 25% 21%;
+                grid-template-rows: 238px 270px 270px 600px;
+                width: 79%;
+                
+            }
+        }
+        @media screen and (max-width: 1280px) {
+            .grid-container {
+                grid-template-columns: 34% 16% 25% 21%;
+                grid-template-rows: 255px 270px 270px 600px;
+            }
+            .button {
+                height: 50%;
+            }
+        }
+        @media screen and (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: 45% 11% 25% 22%;
+                width: 75%
+            }
+            .button {
+                
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 50% 5% 20% 22%;
+                grid-template-areas:
+                    "img info info info"
+                    "img info info info"
+                    "main-1 main-1 main-1 main-1"
+                    "main-3 main-3 main-3 main-3"
+                    "main-2 main-2 main-2 main-2";
+                gap: 2% 1%;
+                grid-template-rows: 240px 255px 260px 350px 800px;
+                width: 90%;
+                margin-left: 5%;
+            }
+        }
+        .img {
+            margin-right: 10px;
+            grid-area: img;
+        }
+        .info {
+            grid-area: info;
+        }
+        .main-1 {
+            grid-area: main-1;
+            font-size: 24px; font-family: 'OpenSans Light'
+        }
+        .main-2 {
+            grid-area: main-2;
+            font-size: 40px
+        }
+        .main-3 {
+            grid-area: main-3;
+            font-size: 24px; padding-top: 1%; font-family: 'OpenSans Light'
+        }
+        #i{
+            width:326px;
+            height:534px
+        }
+        #n1 {
+            font-size: 50px;
+            font-family: 'ZillaSlab Regular'
+        }
+        #n2 {
+            font-size: 32px;
+            padding-top: 3%;
+            font-family: 'OpenSans Light'
+        }
+        #p1 {
+            font-size:35px;
+            width: 200px;
+            padding-top: 20px;
+        }
+        @media screen and (max-width: 415px) {
+            #i{
+                width:163px;
+                height:282px;
+            }
+            #n1{
+                padding-top: 0%;
+                font-size: 30px;
+            }
+            #n2{
+                padding-top: 5%;
+                font-size: 20px;
+            }
+            .grid-container {
+                grid-template-areas:
+                    "img info info info"
+                    "img info info info"
+                    "main-1 main-1 main-1 main-1"
+                    "main-3 main-3 main-3 main-3"
+                    "main-2 main-2 main-2 main-2";
+                gap: 2% 1%;
+                grid-template-columns: 49% 21% 10% 17%;
+                grid-template-rows: 10px 255px 260px 350px 800px;
+                width: 90%;
+                margin-left: 5%;
+            }
+            .main-1 {
+                font-size: 20px;
+            }
+            .main-3 {
+                font-size: 20px;
+            }
+            .main-2 {
+                font-size: 20px;
+            }
+            #profile {
+                padding-left: 5%;
+            }
+            .button {
+                padding-left: 7%;
+            }
+            #h1 {
+                font-size: 24px;
+            }
+            #h2 {
+                font-size: 20px;
+            }
+        }
+        @media screen and (max-width: 375px) {
+            .info {
+                padding-left: 6%;
+                width: 100%
+            }
+            #profile {
+                padding-left: 0%;
+
+                padding-right: 0%;
+                width: 60%
+            }
+        }
+        @media screen and (max-width: 361px) {
+            .button {
+                padding-left: 0%;
+            }
+            #profile {
+                padding-left: 0%;
+
+                padding-right: 0%;
+                width: 60%
+            }
+            .grid-container {
+                grid-template-columns: 52% 19% 10% 17%;
+                margin-left: 2%;
+                width: 95%;
+            }
+            #n1{
+                padding-top: 0%;
+                font-size: 30px;
+            }
+            #n2{
+                padding-top: 5%;
+                font-size: 19px;
+            }
+            .info {
+                padding-left: 0%;
+            }
+        }
+
+    </style>
+</head>
+<body style="background-color: #e1e3e6">
+    <div id="bar">
+        <div id="profile">
+            <div id="p1">Mark Saban</div>
+            <div style="padding-top:2%">Email me at:</div>
+            <div><a href="mailto:msaban@ntlworld.com" style="color: black">msaban@ntlworld.com</a></div>
+        </div>
+        <div class="row">
+            <div class="button home"><a href="index.html" id="t" style="box-shadow: 0px 2px #ffffff;" class="">Home</a></div>
+            <div class="button"><a href="contact.html" id="t" class="hvr-underline-from-center">Contact Me</a></div>
+            <div class="button"><a href="psychotherapy.html" id="t" class="hvr-underline-from-center">Psychotherapy</a></div>
+            <div class="button"><a href="links.html" id="t" class="hvr-underline-from-center">Articles & Links</a></div>
+        </div>
+    </div>
+    <div id="headline">
+        <svg height="30" width="90%">
+              <line x1="10%" y1="10" x2="1700" y2="10" style="stroke:rgb(255,255,255);stroke-width:2;" />
+        </svg>
+    </div>
+    <div class="grid-container">
+        <div class="img">
+            <img id="i" src="marksaban.jpg" alt="Mark Saban">
+        </div>
+        <div class="info">
+            <div id="n1">Mark Saban</div>
+            <div id="n2">Psychotherapist<br>Analytical Psychologist<br>Jungian Analyst<br>Reg: IAAP & UKCP</div>
+        </div>
+        <div class="main-1">I am a senior analyst with the <a class="nul" href="http://www.igap.co.uk/" style="color: black;">Independent Group of Analytical Psychologists</a>.<br><br>I registered as a Jungian Analyst with the <a class="nul" href="https://www.psychotherapy.org.uk/" style="color: black;">United Kingdom Council for Psychotherapy</a> and the <a class="nul" href="https://iaap.org/" style="color: black;">International Association for Analytical Psychology</a>.</div>
+        <div class="main-2">
+    
+        </div>
+        <div class="main-3">I gained an M.A. at Oxford University and worked for twenty years as a performer/writer in theatre, TV, and film before training as an analytical psychologist.<br><br>I completed my PhD at the University of Essex, where I also work as a lecturer in the Department of Psychosocial and Psychoanalytic studies.<br><br>I see clients in Oxford.</div>
+    </div>
+    <footer style="font-family: 'OpenSans Light'; margin-left: 10%"> <br>Website created by Gabriel Saban</footer>
+</body>
+</html>
