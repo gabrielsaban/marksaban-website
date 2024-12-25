@@ -6,9 +6,9 @@
 
 ### Features Checklist
 
-- [x] **Core Feature 1:** Completed description of the feature.
-- [x] **Core Feature 2:** Another completed feature.
-- [ ] **Core Feature 3:** Pending feature to be added soon.
+- Light gradient
+- Finished resources page
+- ?
 
 ---
 
@@ -17,27 +17,6 @@
 - [x] Set up project repository.
 - [x] Initialize project structure.
 - [ ] Implement authentication system.
-- [ ] Design user interface.
-- [ ] Add API documentation.
-
----
-
-### Deployment Checklist
-
-- [x] Choose hosting platform.
-- [x] Configure CI/CD pipelines.
-- [ ] Perform security audit.
-- [ ] Launch production build.
-
----
-
-### Custom Checklist
-
-You can also add custom tasks:
-
-- [ ] Task 1
-- [ ] Task 2
-- [ ] Task 3
 
 ---
 
