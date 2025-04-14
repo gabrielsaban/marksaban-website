@@ -192,6 +192,10 @@ article section p {
   margin-bottom: 1rem;
 }
 
+article p {
+  margin-bottom: 1rem;
+}
+
 /* Contact Page Specific */
 .contact-details {
   font-size: 1.1rem;
