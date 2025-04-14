@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, request
 import datetime
 import os
 
@@ -15,20 +15,21 @@ def _now(format_):
 app.jinja_loader.searchpath.append(os.path.join(app.root_path, 'src/templates'))
 
 @app.route('/')
+@app.route('/index.html')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', request=request)
 
 @app.route('/contact.html')
 def contact():
-    return render_template('contact.html')
+    return render_template('contact.html', request=request)
 
 @app.route('/psychotherapy.html')
 def psychotherapy():
-    return render_template('psychotherapy.html')
+    return render_template('psychotherapy.html', request=request)
 
 @app.route('/links.html')
 def links():
-    return render_template('links.html')
+    return render_template('links.html', request=request)
 
 # Serve static files from src directory
 @app.route('/css/<path:filename>')
@@ -47,6 +48,15 @@ def js(filename):
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory('public', 'favicon.ico')
+
+# Serve robots.txt and sitemap.xml
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory('public', 'robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap_xml():
+    return send_from_directory('public', 'sitemap.xml')
 
 if __name__ == '__main__':
     app.run(debug=True, port=3000) 

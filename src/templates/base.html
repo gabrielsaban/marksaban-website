@@ -6,12 +6,64 @@
     <meta name="description" content="{{ description }}">
     <meta name="keywords" content="{{ keywords }}">
     <meta name="author" content="Gabriel Saban">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://marksaban.co.uk/{{ request.path if request.path != '/' else 'index.html' }}">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://marksaban.co.uk/{{ request.path if request.path != '/' else 'index.html' }}">
+    <meta property="og:image" content="https://marksaban.co.uk/images/marksaban.jpg">
+    
     <link rel="shortcut icon" href="../public/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
     {% if page_specific_css %}
     <link rel="stylesheet" href="{{ page_specific_css }}">
     {% endif %}
     <title>{{ title }}</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Mark Saban - Psychotherapist",
+      "image": "https://marksaban.co.uk/images/marksaban.jpg",
+      "url": "https://marksaban.co.uk",
+      "telephone": "+447905628957",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Oxford",
+        "addressCountry": "UK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 51.7413254,
+        "longitude": -1.2567501
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "17:00"
+      },
+      "sameAs": [
+        "http://www.igap.co.uk/",
+        "https://iaap.org/",
+        "https://www.psychotherapy.org.uk/"
+      ],
+      "priceRange": "££"
+    }
+    </script>
+    
     {% block head_extra %}{% endblock %}
 </head>
 <body>
