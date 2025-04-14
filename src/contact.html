@@ -7,39 +7,45 @@
     <meta name="keywords" content="Mark Saban, Contact, Psychotherapy, Analytical Psychology, Jungian Analysis">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="shortcut icon" href="../public/favicon.ico">
     <title>Mark Saban - Contact</title>
 </head>
 <body>
     <header>
-        <div class="contact-info">
-            <h1>Mark Saban</h1>
-            <p>Get in touch: <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
+        <div class="container">
+            <div class="contact-info">
+                <h1>Mark Saban</h1>
+                <p>Get in touch: <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
+            </div>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="psychotherapy.html">Psychotherapy</a></li>
+                    <li><a href="links.html">Resources</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul class="navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="contact.html" class="active">Contact</a></li>
-                <li><a href="psychotherapy.html">Psychotherapy</a></li>
-                <li><a href="links.html">Resources</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <section class="profile">
+        <div class="container">
             <h2>Contact Information</h2>
             <div class="contact-details">
                 <p><strong>Email:</strong> <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
-                <p><strong>Phone:</strong> +447905 628957</p>
+                <p><strong>Phone:</strong> <a href="tel:+447905628957">+44 7905 628957</a></p>
                 <p><strong>Location:</strong> Oxford, UK</p>
             </div>
         </section>
 
-        <section id="map" style="height: 400px; margin-top: 20px; border: 1px solid #ccc; border-radius: 8px;"></section>
+            <section id="map"></section>
+        </div>
     </main>
 
     <footer>
-        <p>&copy; 2024 All Rights Reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Mark Saban. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

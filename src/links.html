@@ -6,155 +6,281 @@
     <meta name="description" content="Helpful resources and links curated by Mark Saban for psychological and analytical studies.">
     <meta name="keywords" content="Resources, Psychology Links, Jungian Analysis, Therapy Links">
     <meta name="author" content="Gabriel Saban">
-    <link rel="shortcut icon" href="public/favicon.ico">
+    <link rel="shortcut icon" href="../public/favicon.ico">
     <link rel="stylesheet" href="css/styles.css">
     <title>Resources - Mark Saban</title>
     <style>
-        .main-content {
+        .resources-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr; /* Articles = 2 parts, Links = 1 part */
+            grid-template-columns: 2fr 1fr;
             gap: 2rem;
             margin: 2rem 0;
         }
-
-        h2 {
+        
+        @media screen and (max-width: 768px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .section-title {
             font-family: 'Zilla Slab', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 0.5rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--light-gray);
+            padding-bottom: 0.75rem;
             margin-bottom: 1.5rem;
         }
-
+        
+        .article-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
         .article-header {
-            font-weight: bold;
-            text-decoration: underline;
-            margin: 1rem 0;
-        }
-
-        .article-item {
+            background-color: var(--light-gray);
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--primary-color);
             cursor: pointer;
-            margin: 0.5rem 0;
-            padding-left: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
         }
-
+        
+        .article-header:hover {
+            background-color: #e0e6eb;
+        }
+        
+        .article-header::after {
+            content: '+';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .article-header.active::after {
+            content: '−';
+        }
+        
         .article-content {
-            display: none;
-            margin-left: 1.5rem;
-            padding: 0.5rem 0;
+            padding: 1rem;
+            max-height: none;
+            overflow: visible;
         }
-
+        
+        .links-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+        }
+        
         .links-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
+        
         .links-list li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
         }
-
+        
+        .links-list li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
         .links-list li a {
-            color: rgba(0, 0, 0, 0.6);
+            color: var(--secondary-color);
             text-decoration: none;
-            transition: color 0.3s ease-in-out;
+            transition: color 0.3s ease;
+            display: block;
         }
-
+        
         .links-list li a:hover {
-            color: rgba(0, 0, 0, 1);
+            color: var(--primary-color);
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
         }
 
-        /* Force scrollbar to always show */
-        html {
-            overflow-y: scroll;
+        .article-content p {
+            margin-bottom: 1rem;
+        }
+
+        .float-right {
+            float: right;
+            margin-left: 25px;
+        }
+
+        .float-left {
+            float: left;
+            margin-right: 15px;
+        }
+        
+        .summary-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        details summary {
+            cursor: pointer;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="contact-info">
-            <h1>Mark Saban</h1>
-            <p>Get in touch: <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
+        <div class="container">
+            <div class="contact-info">
+                <h1>Mark Saban</h1>
+                <p>Get in touch: <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
+            </div>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="psychotherapy.html">Psychotherapy</a></li>
+                    <li><a href="links.html" class="active">Resources</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul class="navigation">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="psychotherapy.html">Psychotherapy</a></li>
-                <li><a href="links.html" class="active">Resources</a></li>
-            </ul>
-        </nav>
     </header>
 
     <main>
-        <div class="main-content">
-            <!-- Articles Column -->
-            <div>
-                <h2>Articles</h2>
+        <div class="container">
+            <h2 class="section-title">Articles</h2>
+            
+            <div class="resources-grid">
+                <!-- Articles Column -->
                 <div>
-                    <div class="article-header">Publications & Conference Talks</div>
-                    <div class="article-item">Details about publications</div>
-                    <div class="article-content">
-                        <ul>
-                            <li>Item 1 for publications.</li>
-                            <li>Item 2 for publications.</li>
-                        </ul>
+                    <div class="article-card">
+                        <div class="article-header">Publications & conference talks</div>
+                        <div class="article-content">
+                            <div class="summary-title">'Two Souls Alas': Jung's Two Personalities and the Making of Analytical Psychology<br>Winner of International Assocation for Jungian Studies Best Book of 2019</div>
+                            <p><img alt="Two Souls Alas" class="float-right" src="images/book.jpg" height="270" width="170">"In forty five years inhabiting the Jungian field, I've found very few books to be game changers. This is one... a masterly rejig of analytical psychology that bears the hallmarks of an original mind, a brave soul, and a terrific writer. Never mind that Saban ruffles your Jungian feathers! It is vital that all serious analysts and scholars get into this material as quickly and as deeply as possible."</p>
+                            <p>- Professor Andrew Samuels (Jung and the post-Jungians, The Political Psyche)</p>
+                            <p>"A compelling read in delightfully lucid argument, this is the book for Jungians who care about the fate of Jungian psychology in the twentyfirst century. By sympathetic and imaginative study of Jung's writings and life, Saban explores what is necessary in the ideas and gives a coherent picture of what is contradictory and problematic. Jungian psychology is gently eased on its way, no longer mired in the biography of a troubled European. 'Two Souls Alas' frees the vital work of Jungian individuation into its true calling: addressing the violence and splitting of politics, culture and nature today."</p>
+                            <p>- Susan Rowland (PhD), Author of Jung as a Writer (2005) and Jung: A Feminist Revision (2002), core faculty, Pacifica Graduate Institute, California.</p>
+                            <div style="clear: both;">
+                                <a class="float-left" href="https://www.amazon.co.uk/Two-Souls-Alas-Personalities-Analytical/dp/1630517488/ref=sr_1_1?keywords=two+souls+alas+saban&qid=1568974465&s=gateway&sr=8-1"><img alt="Purchase on Amazon" src="images/amazon.jpg" width="64" height="64"></a>
+                                <p style="margin-left: 80px;">You can order the book <a href="https://www.amazon.co.uk/Two-Souls-Alas-Personalities-Analytical/dp/1630517488/ref=sr_1_1?keywords=two+souls+alas+saban&qid=1568974465&s=gateway&sr=8-1">here</a></p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="article-header">Tautegorical Imperative</div>
-                    <div class="article-item">Details about the Tautegorical Imperative</div>
-                    <div class="article-content">
-                        <ul>
-                            <li>Explanation of Tautegorical Imperative.</li>
-                        </ul>
+                    <div class="article-card">
+                        <div class="article-header">Video talks & interviews</div>
+                        <div class="article-content">
+                            <p><a href="https://youtu.be/zIhMX-44uRs">"Two Jungs: Two Sciences?"</a><br>A talk about Jung's complex and ambigous relationship with science.</p>
+                            <p><a href="https://youtu.be/6yISrxZ_p_0">"Secrets and Lies"</a><br>A talk about the role of the secret in the demise of the Freud/Jung relationship. Based on a chapter from "Two Souls Alas..."</p>
+                            <p><a href="https://www.academia.edu/video/lBMqR1">"Folie-à-Deux? Archetypal and Personal Dimensions in Clinical Work: The Case of Jung"</a><br>A version of Chapter 6 of "Two Souls Alas..."</p>
+                            <p><a href="https://www.youtube.com/watch?v=FP-MPJRvkZw">An Interview</a> with Murray Stein</p>
+                            <p><a href="https://www.youtube.com/watch?v=MHLHxMMbLJw">An Interview</a> with Laura London</p>
+                        </div>
                     </div>
 
-                    <div class="article-header">Short Paper on Theatre & Psyche</div>
-                    <div class="article-item">Details about the Theatre & Psyche paper</div>
-                    <div class="article-content">
-                        <ul>
-                            <li>Key points about Theatre & Psyche.</li>
-                        </ul>
+                    <div class="article-card">
+                        <div class="article-header">Tautegorical Imperative</div>
+                        <div class="article-content">
+                            <p>The term 'tautegorical' is used to describe a symbol that means what it is, as opposed to an 'allegorical' symbol, which points towards something beyond itself. In the article, I explore this concept in relation to Jung's psychological approach and how it affects our understanding of psychic phenomena.</p>
+                            <p>I propose that Jung's psychology follows what might be called a 'tautegorical imperative' - that we need to approach psychological material on its own terms rather than reducing it to interpretations or causes. This perspective is especially important when working with dreams, symptoms, and archetypal material in therapy.</p>
+                            <p>The paper considers how this approach differs from more reductive psychologies and examines the implications for contemporary analytical practice.</p>
+                        </div>
                     </div>
 
-                    <div class="article-header">Dreamwork</div>
-                    <div class="article-item">Details about Dreamwork</div>
-                    <div class="article-content">
-                        <ul>
-                            <li>Key points on Dreamwork.</li>
+                    <div class="article-card">
+                        <div class="article-header">Theatre & Psyche</div>
+                        <div class="article-content">
+                            <p>Drawing on my background in theatre and subsequent work as a psychotherapist, this paper explores the deep connections between theatrical performance and psychological processes. It examines how theatrical space creates a container for psychological transformation similar to the analytic setting.</p>
+                            <p>The work considers how the dramatic enactment of psychological material provides a form of active imagination that can engage both performers and audience in meaningful psychological work. It discusses how theatrical metaphors can help us understand the therapeutic process, and conversely, how psychological insights can illuminate theatrical practice.</p>
+                            <p>Through examining specific theatrical traditions and techniques, the paper suggests ways in which the two fields might continue to inform and enrich each other.</p>
+                        </div>
+                    </div>
+
+                    <div class="article-card">
+                        <div class="article-header">Dreamwork</div>
+                        <div class="article-content">
+                            <p>This article explores the Jungian approach to working with dreams in analytical psychology. Unlike Freudian analysis, which often treats dreams as disguised wish fulfillments, Jungian dreamwork treats the dream as a direct communication from the unconscious that requires no translation.</p>
+                            <p>The paper outlines practical methods for engaging with dream material, including amplification, active imagination, and the importance of considering both personal and archetypal dimensions. It explores how dreams function as compensatory messages from the psyche, offering perspectives that consciousness has overlooked.</p>
+                            <p>Special attention is given to recurring dreams, nightmares, and the appearance of archetypal figures in dreams, with suggestions for how these might be approached in therapeutic work.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Useful Links Column -->
+                <div>
+                    <div class="links-card">
+                        <h3 class="section-title">Useful Links</h3>
+                        <ul class="links-list">
+                            <li><a href="http://www.igap.co.uk" target="_blank" rel="noopener noreferrer">Independent Group of Analytical Psychologists</a></li>
+                            <li><a href="http://www.aja.dircon.co.uk/" target="_blank" rel="noopener noreferrer">Association of Jungian Analysts</a></li>
+                            <li><a href="http://www.jungian-analysis.org/" target="_blank" rel="noopener noreferrer">Society of Analytical Psychology</a></li>
+                            <li><a href="http://www.gaps.co.uk/" target="_blank" rel="noopener noreferrer">Guild of Analytical Psychology and Spirituality</a></li>
+                            <li><a href="http://www.wmip.org/index.html" target="_blank" rel="noopener noreferrer">West Midlands Institute of Psychotherapy</a></li>
+                            <li><a href="http://www.jungclub-london.org/" target="_blank" rel="noopener noreferrer">C.G. Jung Analytical Psychology Club, London</a></li>
+                            <li><a href="http://www.iaap.org/" target="_blank" rel="noopener noreferrer">International Association for Analytical Psychology</a></li>
                         </ul>
                     </div>
                 </div>
-            </div>
-
-            <!-- Useful Links Column -->
-            <div>
-                <h2>Useful Links</h2>
-                <ul class="links-list">
-                    <li><a href="http://www.igap.co.uk" target="_blank" rel="noopener noreferrer">Independent Group of Analytical Psychologists</a></li>
-                    <li><a href="http://www.aja.dircon.co.uk/" target="_blank" rel="noopener noreferrer">Association of Jungian Analysts</a></li>
-                    <li><a href="http://www.jungian-analysis.org/" target="_blank" rel="noopener noreferrer">Society of Analytical Psychology</a></li>
-                    <li><a href="http://www.gaps.co.uk/" target="_blank" rel="noopener noreferrer">Guild of Analytical Psychology and Spirituality</a></li>
-                    <li><a href="http://www.wmip.org/index.html" target="_blank" rel="noopener noreferrer">West Midlands Institute of Psychotherapy</a></li>
-                    <li><a href="http://www.jungclub-london.org/" target="_blank" rel="noopener noreferrer">C.G. Jung Analytical Psychology Club, London</a></li>
-                    <li><a href="http://www.iaap.org/" target="_blank" rel="noopener noreferrer">International Association for Analytical Psychology</a></li>
-                </ul>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>© 2024 All Rights Reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Mark Saban. All Rights Reserved.</p>
+            <p>Website created by Gabriel Saban</p>
+        </div>
     </footer>
 
     <script>
-        const items = document.querySelectorAll('.article-item');
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                const content = item.nextElementSibling;
-                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        document.addEventListener('DOMContentLoaded', function() {
+            const headers = document.querySelectorAll('.article-header');
+            
+            headers.forEach(header => {
+                header.addEventListener('click', function() {
+                    // Toggle active class on the header
+                    this.classList.toggle('active');
+                    
+                    // Toggle the content visibility
+                    const content = this.nextElementSibling;
+                    if (content.style.display === 'none' || content.style.display === '') {
+                        content.style.display = 'block';
+                    } else {
+                        content.style.display = 'none';
+                    }
+                });
             });
+            
+            // Initially hide all article content except the first one
+            const contents = document.querySelectorAll('.article-content');
+            contents.forEach((content, index) => {
+                if (index !== 0) {
+                    content.style.display = 'none';
+                }
+            });
+            
+            // Set the first header as active
+            const firstHeader = document.querySelector('.article-header');
+            if (firstHeader) {
+                firstHeader.classList.add('active');
+            }
         });
     </script>
 </body>
 </html>
+
