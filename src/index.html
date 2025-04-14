@@ -1,62 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mark Saban - Experienced Psychotherapist, Analytical Psychologist, and Jungian Analyst in Oxford, providing expert psychological care and analysis.">
-    <meta name="keywords" content="Mark Saban, Psychotherapist, Analytical Psychology, Jungian Analysis, Therapy, Oxford, IAAP, UKCP">
-    <meta name="author" content="Gabriel Saban">
-    <link rel="shortcut icon" href="../public/favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Mark Saban - Psychotherapist & Jungian Analyst</title>
+{% extends "templates/base.html" %}
 
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="contact-info">
-                <h1>Mark Saban</h1>
-                <p>Get in touch: <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
-            </div>
-            <nav>
-                <ul class="navigation">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="psychotherapy.html">Psychotherapy</a></li>
-                    <li><a href="links.html">Resources</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+{% block head_extra %}
+{% endblock %}
 
-    <main>
-        <div class="container">
-            <section class="profile">
-                <img src="images/marksaban.jpg" alt="Mark Saban" class="profile-img">
-                <div class="profile-details">
-                    <h2>Mark Saban</h2>
-                    <p>Psychotherapist - Analytical Psychologist - Jungian Analyst<br>Registered with IAAP & UKCP</p>
-                </div>
-            </section>
+{% set title = "Mark Saban - Psychotherapist & Jungian Analyst" %}
+{% set description = "Mark Saban - Experienced Psychotherapist, Analytical Psychologist, and Jungian Analyst in Oxford, providing expert psychological care and analysis." %}
+{% set keywords = "Mark Saban, Psychotherapist, Analytical Psychology, Jungian Analysis, Therapy, Oxford, IAAP, UKCP" %}
+{% set active_page = "home" %}
 
-            <article>
-                <section>
-                    <p>As a senior analyst, I am affiliated with the <a href="http://www.igap.co.uk/">Independent Group of Analytical Psychologists</a>.</p>
-                    <p>I hold registrations as a Jungian Analyst with the <a href="https://www.psychotherapy.org.uk/">United Kingdom Council for Psychotherapy</a> and the <a href="https://iaap.org/">International Association for Analytical Psychology</a>.</p>
-                </section>
-                <section>
-                    <p>After earning an M.A. at Oxford University, I spent two decades as a performer and writer in theatre, TV, and film before embarking on a career as an analytical psychologist.</p>
-                    <p>I completed my PhD at the University of Essex, where I am also a lecturer in the Department of Psychosocial and Psychoanalytic Studies.</p>
-                    <p>I currently provide psychotherapy services in Oxford.</p>
-                </section>
-            </article>
-        </div>
-    </main>
+{% block content %}
+<section class="profile">
+    <img src="images/marksaban.jpg" alt="Mark Saban" class="profile-img">
+    <div class="profile-details">
+        <h2>Mark Saban</h2>
+        <p>Psychotherapist - Analytical Psychologist - Jungian Analyst<br>Registered with IAAP & UKCP</p>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Mark Saban. All Rights Reserved.</p>
-        </div>
-    </footer>
-</body>
-</html>
+<article>
+    <section>
+        <p>As a senior analyst, I am affiliated with the <a href="http://www.igap.co.uk/">Independent Group of Analytical Psychologists</a>.</p>
+        <p>I hold registrations as a Jungian Analyst with the <a href="https://www.psychotherapy.org.uk/">United Kingdom Council for Psychotherapy</a> and the <a href="https://iaap.org/">International Association for Analytical Psychology</a>.</p>
+    </section>
+    <section>
+        <p>After earning an M.A. at Oxford University, I spent two decades as a performer and writer in theatre, TV, and film before embarking on a career as an analytical psychologist.</p>
+        <p>I completed my PhD at the University of Essex, where I am also a lecturer in the Department of Psychosocial and Psychoanalytic Studies.</p>
+        <p>I currently provide psychotherapy services in Oxford.</p>
+    </section>
+</article>
+{% endblock %}
+
+{% block footer_extra %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

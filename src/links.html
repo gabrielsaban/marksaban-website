@@ -1,462 +1,219 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Helpful resources and links curated by Mark Saban for psychological and analytical studies.">
-    <meta name="keywords" content="Resources, Psychology Links, Jungian Analysis, Therapy Links">
-    <meta name="author" content="Gabriel Saban">
-    <link rel="shortcut icon" href="../public/favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
-    <title>Resources - Mark Saban</title>
-    <style>
-        .resources-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        @media screen and (max-width: 768px) {
-            .resources-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .section-title {
-            font-family: 'Zilla Slab', serif;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--light-gray);
-            padding-bottom: 0.75rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .article-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 1.5rem;
-            overflow: hidden;
-        }
-        
-        .article-header {
-            background-color: var(--light-gray);
-            padding: 1rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        
-        .article-header:hover {
-            background-color: #e0e6eb;
-        }
-        
-        .article-header::after {
-            content: '+';
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .article-header.active::after {
-            content: '−';
-        }
-        
-        .article-content {
-            padding: 1rem;
-            display: none;
-        }
-        
-        .links-card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-            padding: 1.25rem;
-        }
-        
-        .links-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .links-list li {
-            margin-bottom: 0.4rem;
-            padding-bottom: 0.4rem;
-        }
-        
-        .links-list li a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            display: block;
-        }
-        
-        .links-list li a:hover {
-            color: var(--primary-color);
-        }
-        
-        .article-content img {
-            max-width: 100%;
-            height: auto;
-        }
+{% extends "templates/base.html" %}
 
-        .article-content p {
-            margin-bottom: 1rem;
-        }
+{% block head_extra %}
+    <link rel="stylesheet" href="css/links.css">
+{% endblock %}
 
-        .float-right {
-            float: right;
-            margin-left: 25px;
-        }
+{% set title = "Resources - Mark Saban" %}
+{% set description = "Helpful resources and links curated by Mark Saban for psychological and analytical studies." %}
+{% set keywords = "Resources, Psychology Links, Jungian Analysis, Therapy Links" %}
+{% set active_page = "resources" %}
 
-        .float-left {
-            float: left;
-            margin-right: 15px;
-        }
-        
-        .summary-title {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        
-        .sub-header {
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin: 1.5rem 0 0.5rem;
-            color: var(--primary-color);
-        }
-        
-        .pdf-link {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            background-color: var(--light-gray);
-            border-radius: 4px;
-            margin: 1rem 0;
-            color: var(--primary-color);
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-        
-        .pdf-link:hover {
-            background-color: #d1d8e0;
-        }
-        
-        .pdf-link img {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-        }
-        
-        .clear {
-            clear: both;
-        }
-        
-        h2 {
-            font-family: 'Zilla Slab', serif;
-            font-size: 1.5rem;
-            margin-top: 1.5rem;
-            color: var(--primary-color);
-        }
-        
-        h3, h4 {
-            font-family: 'Zilla Slab', serif;
-            margin-top: 1rem;
-            color: var(--primary-color);
-        }
-        
-        em {
-            font-style: italic;
-        }
-        
-        .pdf-icon-right {
-            float: right;
-            margin-left: 15px;
-        }
-        
-        i {
-            font-style: italic;
-        }
-        
-        /* Make link category headings more compact */
-        .links-card p {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-top: 0.9rem;
-            margin-bottom: 0.3rem;
-            border-bottom: 1px solid var(--light-gray);
-            padding-bottom: 0.2rem;
-        }
-        
-        /* Make the first category heading have less top margin */
-        .links-card p:first-of-type {
-            margin-top: 0.5rem;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="contact-info">
-                <h1>Mark Saban</h1>
-                <p>Get in touch: <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
-            </div>
-            <nav>
-                <ul class="navigation">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="psychotherapy.html">Psychotherapy</a></li>
-                    <li><a href="links.html" class="active">Resources</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <h2 class="section-title">Articles</h2>
+{% block content %}
+<h2 class="section-title">Articles</h2>
             
-            <div class="resources-grid">
-                <!-- Articles Column -->
-                <div>
-                    <div class="article-card">
-                        <div class="article-header">Publications & conference talks</div>
-                        <div class="article-content">
-                            <div class="summary-title">'Two Souls Alas': Jung's Two Personalities and the Making of Analytical Psychology<br>Winner of International Assocation for Jungian Studies Best Book of 2019</div>
-                            <p><img alt="Two Souls Alas" class="float-right" src="images/book.jpg" height="270" width="170">"In forty five years inhabiting the Jungian field, I've found very few books to be game changers. This is one... a masterly rejig of analytical psychology that bears the hallmarks of an original mind, a brave soul, and a terrific writer. Never mind that Saban ruffles your Jungian feathers! It is vital that all serious analysts and scholars get into this material as quickly and as deeply as possible."</p>
-                            <p>- Professor Andrew Samuels (Jung and the post-Jungians, The Political Psyche)</p>
-                            <p>"A compelling read in delightfully lucid argument, this is the book for Jungians who care about the fate of Jungian psychology in the twentyfirst century. By sympathetic and imaginative study of Jung's writings and life, Saban explores what is necessary in the ideas and gives a coherent picture of what is contradictory and problematic. Jungian psychology is gently eased on its way, no longer mired in the biography of a troubled European. 'Two Souls Alas' frees the vital work of Jungian individuation into its true calling: addressing the violence and splitting of politics, culture and nature today."</p>
-                            <p>- Susan Rowland (PhD), Author of Jung as a Writer (2005) and Jung: A Feminist Revision (2002), core faculty, Pacifica Graduate Institute, California.</p>
-                            <div style="clear: both;">
-                                <a class="float-left" href="https://www.amazon.co.uk/Two-Souls-Alas-Personalities-Analytical/dp/1630517488/ref=sr_1_1?keywords=two+souls+alas+saban&qid=1568974465&s=gateway&sr=8-1"><img alt="Purchase on Amazon" src="images/amazon.jpg" width="64" height="64"></a>
-                                <p style="margin-left: 80px;">You can order the book <a href="https://www.amazon.co.uk/Two-Souls-Alas-Personalities-Analytical/dp/1630517488/ref=sr_1_1?keywords=two+souls+alas+saban&qid=1568974465&s=gateway&sr=8-1">here</a></p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="article-card">
-                        <div class="article-header">Video talks & interviews</div>
-                        <div class="article-content">
-                            <p><a href="https://youtu.be/zIhMX-44uRs">"Two Jungs: Two Sciences?"</a><br>A talk about Jung's complex and ambigous relationship with science.</p>
-                            <p><a href="https://youtu.be/6yISrxZ_p_0">"Secrets and Lies"</a><br>A talk about the role of the secret in the demise of the Freud/Jung relationship. Based on a chapter from "Two Souls Alas..."</p>
-                            <p><a href="https://www.academia.edu/video/lBMqR1">"Folie-à-Deux? Archetypal and Personal Dimensions in Clinical Work: The Case of Jung"</a><br>A version of Chapter 6 of "Two Souls Alas..."</p>
-                            <p><a href="https://www.youtube.com/watch?v=FP-MPJRvkZw">An Interview</a> with Murray Stein</p>
-                            <p><a href="https://www.youtube.com/watch?v=MHLHxMMbLJw">An Interview</a> with Laura London</p>
-                        </div>
-                    </div>
-
-                    <div class="article-card">
-                        <div class="article-header">Conference papers</div>
-                        <div class="article-content">
-                            <p>"Theatre and Psyche" at International Conference of the Association of Jungian Studies "Psyche and Imagination" Conference, Greenwich, 6-9th July 2006</p>
-                            <p>"Fleshing Out The Psyche" at "Dionysus, Body, Enactment" Conference, Sesame Institute, London 26 April 2008</p>
-                            <p>"Performing the Self" at The Fifth International Conference on the Dialogical Self, Cambridge, August 26-29th 2008 wwwculturedialogue.org/drupal/en/node/782</p>
-                            <p>"Entertaining the Stranger: Otherness in Jung, Hillman and Waldenfels" at International Conference of the International Association of Jungian Studies "Psyche Power and Society" 9-12th July 2009</p>
-                            <p>"Playing the Other" at Playing the Other Conference, Sesame Institute, London May 8th 2010"</p>
-                            <p>"The Dis/enchantment of C.G. Jung" at the First Regional Conference of the International Association for Jungian Studies, London July 15th - 16th 2011</p>
-                            <p>"The Tautegorical Imperative: Mythos and Logos in Jung and Giegerich, Hegel and Schelling" at First Conference of the International Society for Psychology as the Discipline of Interiority, Berlin July 23rd-25th 2012</p>
-                            <p>"Ambiguating Jung" at Nineteenth Triannual Congress of the International Association for Analytical Psychology (IAAP), Copenhagen, Denmark, August 18-23, 2013.</p>
-                            <p>"MDR – A posthumous creation myth" IAAP/IAJS Conference, Yale July 9, 2014</p>
-                            <p>"The dissociated psyche and its politics" at IAAP Analysis and Activism Conference, Rome 3-6 December 2015</p>
-                            <p>"The figures speak because they want to: A Dionysian perspective on analytical psychology" at IAJS Conference: Ecstatic ancient/archaic thought and Analytical Psychology, London 15-16th July 2016</p>
-                            <p>"Individuating Individuation - Simondon brought to bear on Jung" at Holism: possibilities and problems Conference, University of Essex, Colchester 8 - 10 September 2017</p>
-                            <p>"Inside-Out: Jung's myth of interiority - a conundrum?" at Who is My Jung? Conference, British Library, London 11th November 2017</p>
-                            <p>"Simondon & Jung: A psychosocial individuation" at Association for Psychosocial Studies Biennial Conference, Bournemouth University 2nd to 5th April 2018</p>
-                            <p>"A (Jungian) fate worse than death – erasure through interiorisation" at Feminist Views from Somewhere Conference, London 6th July 2018</p>
-                            <p>"The Transindividual: exploring the space between inner and outer individual and social" Plenary address at IAAP/IAJS Conference, Stuttgart 2nd-5th August 2018</p>
-                            <p>"Theatre: highlighting the psychosocial in the clinic" Association for Psychosocial Studies Biennial Conference, Birkbeck University, London, 16th May 2019</p>
-                            <p>"Two Jungs: Two Sciences?" Plenary Address, International Association for Jungian Studies Triannual Conference, Duquesne University March 18th-21st 2021</p>
-                            <p>"Emotion and the Transindividual: The Collective Unconscious as a Dimension of Affectivity" at 'I feel therefore I am' 75th Anniversary Conference, The Jung Institute, Küsnacht, Switzerland, 30th June-2nd July 2023</p>
-                        </div>
-                    </div>
-
-                    <div class="article-card">
-                        <div class="article-header">Papers in journals</div>
-                        <div class="article-content">
-                            <p>Theatre and Psyche Harvest (51: 1, 2005)</p>
-                            <p>Entertaining the Stranger, Journal of Analytical Psychology, 2011, 56, 92–108</p>
-                            <p>The Dis/Enchantment of C G Jung, International Journal of Jungian Studies, Vol. 4, No. 1, March 2012, 21-33</p>
-                            <p>A response to Jon Mills' paper, 'Jung's Metaphysics', International Journal of Jungian Studies, 2014, Volume 6, Issue 3</p>
-                            <p>A response to David Tacey's 'James Hillman: The unmaking of a psychologist', Journal of Analytical Psychology, 2014, 59, 524–528</p>
-                            <p>Another serious misunderstanding: Jung, Giegerich and a premature requiem, Journal of Analytical Psychology, 2015, 60, 1, 94–113 (http://onlinelibrary.wiley.com/doi/10.1111/1468-5922.12130/pdf)</p>
-                            <p>Some reflections on Barreto's response, Journal of Analytical Psychology, 2015, 60, 1, 122–125 (http://onlinelibrary.wiley.com/doi/10.1111/1468-5922.12132/pdf)</p>
-                            <p>Two in one or one in two? Pushing off from Jung with Wolfgang Giegerich, Journal of Analytical Psychology, 2015 Nov; 60 (5):679-97</p>
-                            <p>Jung, Winnicott and the divided psyche, Journal of Analytical Psychology, 2016, 61, 3, 329–349</p>
-                            <p>A response to William Meredith-Owen, Journal of Analytical Psychology, 2016, 61, 3, 362-364</p>
-                            <p>Secrete e Bugie. Un'area cieca nella psycologia junghiana, Rivista di psicologia analitica, 2017, n. 43 Volume 95</p>
-                            <p>Outside-In: Jung's myth of interiority ambiguated Or - Knowing me, Knowing Jung - ahah!, Journal of Analytical Psychology, 2018 63, 368-381</p>
-                            <p>Two Jungs: Two Sciences?, International Journal of Jungian Studies 15, 2023, 52–72</p>
-                        </div>
-                    </div>
-
-                    <div class="article-card">
-                        <div class="article-header">Book reviews</div>
-                        <div class="article-content">
-                            <p>Review of What is Soul by Wolfgang Giegerich, International Journal of Jungian Studies 5(1):February 2013 Pages 108-111</p>
-                            <p>Review of Temporality and Shame: Perspectives from Psychoanalysis and Philosophy edited by Ladson Hinton and Hessel Willemsen, British Journal of Psychotherapy Volume 35, Issue 4 November 2019 Pages 652-655</p>
-                            <p>Review of Dream Symbols of the Individuation Process: Notes of C. G. Jung's Seminars on Wolfgang Pauli's dreams, by C. G. Jung (edited by Suzanne Gieser) Published by Princeton University Press, Princeton & Oxford, 2019, British Journal of Psychotherapy 37, 2 (2021) 327–349</p>
-                            <p>Review of Antisemitism and analytical psychology, by Daniel Burston, Psychodynamic Practice, 2022 Vol. 28, No. 2, 224–236</p>
-                        </div>
-                    </div>
-
-                    <div class="article-card">
-                        <div class="article-header">Chapters in books</div>
-                        <div class="article-content">
-                            <p>"Fleshing out the psyche: Jung, psychology and the body" in Jones, Raya (Ed). Body, Mind, and Healing After Jung: A Space of Questions. London: Routledge. 2010</p>
-                            <p>"Staging the Self: performance, individuation and embodiment" in Jones, Raya (Ed). Body, Mind, and Healing After Jung: A Space of Questions. London: Routledge. 2010</p>
-                            <p>"Ambiguating Jung" in Jean Kirsch, ed., How and Why We Still Read Jung, Routledge, London, 2013</p>
-                            <p>"Science Friction: Jung, Goethe and Scientific Objectivity" in Raya Jones, ed., Jung and Science, Routledge, London, 2014</p>
-                            <p>"The Dissociated Psyche and its Politics" in Carta, Adorisio & Mercurio ed. The Analyst in the Polis vol. 1, 2017 (Ebook to be found at: https://www.amazon.co.uk/dp/B06XKNVDHM/ref=sr_1_2?ie=UTF8&qid=1489940683&sr=8-2&keywords=the+analyst+in+the+polis)</p>
-                            <p>"The characters speak because they want to speak: Jung Dionysus Theatre and Therapy" in Paul Bishop & Leslie Gardner eds. The Ecstatic and the Archaic, Routledge, London 2018</p>
-                            <p>"Jung's 'personal myth' and the two personalities" in Raya Jones & Leslie Gardner ed. Narratives of Individuation, (Routledge, London 2019).</p>
-                            <p>"Simondon and Jung: Re-thinking individuation" in Christian McMillan, Roderick Main & David Henderson eds. Holism: Possibilities and Problems, (Routledge, London 2020).</p>
-                        </div>
-                    </div>
-
-                    <div class="article-card">
-                        <div class="article-header">Edited books</div>
-                        <div class="article-content">
-                            <p>Analysis and Activism - Social and Political Contributions of Jungian Psychology, Ed. Emilija Kiehl, Mark Saban, & Andrew Samuels (Routledge) 2016 (Finalist American Board and Academy of Psychoanalysis Book Prize, Nominated Gradiva Award for Best Edited Book)</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Add Tautegorical, Theatre & Psyche, and Dreamwork sections -->
-                    <h2 class="section-title">Tautegorical Imperative</h2>
-                    <div class="article-card">
-                        <div class="article-header">The Tautegorical Imperative: a paper on Giegerich and Myth</div>
-                        <div class="article-content">
-                            <a href="#" download="Tautegoricalimperative.pdf"><img alt="Download PDF" src="images/pdf.png" width="64" height="64" class="pdf-icon-right"></a>
-                            <h2>Preamble (September 2013)</h2>
-                            <p><i>In July 2012 I attended the inaugural conference of the International Society for Psychology as the Discipline of Interiority (ISPDI). I delivered a paper entitled "The Tautegorical Imperative: Mythos and Logos in Jung and Giegerich, Hegel and Schelling".</i></p>
-                            <p><i>After a lengthy and animated online debate (in the online Forum of the ISPDI), on September 19th 2012 Giegerich published (on the website of the ISPDI) a thirty five page rebuttal of my position(s). For several years this paper was available at the website, but recently it seems to have been taken down.</i></p>
-                            <p><i>In the wake of this, several people have privately asked me if they could read my original paper. I have therefore decided to make it available here.</i></p>
-                            <p><i>Those interested in further developments might also like to read an article by Sean McGrath, published in June 2013 in the International Journal for Jungian Studies, entitled 'The question concerning metaphysics: a Schellingian intervention in analytical psychology'</i></p>
-                            <h2>The Tautegorical Imperative: Mythos and Logos in Jung and Giegerich, Hegel and Schelling</h2>
-                            <p>In Wolfgang Giegerich's 2012 book, What is Soul, he describes his psychology as 'pushing off' from Hillman's Archetypal Psychology, in much the same way that Archetypal Psychology itself pushed off from Jung's analytical psychology. The full extent of this 'pushing off' was revealed twenty years ago, at a festival of Archetypal Psychology in honour of HIllman, where Giegerich delivered his milestone paper entitled, 'Killings: psychology's Platonism and the missing link to reality,' which gave notice of a radically different psychological perspective, to be given broader and more substantial form two years later in The Souls' Logical Life, and developed in numerous books and articles in the years since then.</p>
-                            <p>It is noteworthy however that the sacred cow which Giegerich chose to sacrifice in 1992 was the pivotal and central place of myth in Hillman's imaginal psychology. In Killings, Giegerich asks "But is archetypal psychology really a psychology with Gods? Or is the talk about "Gods" in archetypal psychology merely a kind of glamorising jargon, fundamentally removed from that reality that once was referred to by the word "gods"." (Soul Violence p.190) Here he touches upon what he later developed more fully into a radical critique of the place of myth in Hillman's psychology.</p>
-                        </div>
-                    </div>
-                    
-                    <h2 class="section-title">Short paper on Theatre & Psyche</h2>
-                    <div class="article-card">
-                        <div class="article-header">Theatre and Psyche</div>
-                        <div class="article-content">
-                            <a href="#" download="theatreandpsyche.pdf"><img alt="Download PDF" src="images/pdf.png" width="64" height="64" class="pdf-icon-right"></a>
-                            <h2>Mark Saban</h2>
-                            <p><i>Dedicated to the memory of the late David Holt, long-term stalwart of the O.P.S. For over 30 years his work returned again and again to the questions that psyche and theatre open up for each other. This short paper is, I hope, in the spirit of that work.</i></p>
-                            <h2>Image, Psyche, Logos</h2>
-                            <p>At the heart of Jung's psychology is his emphasis on the primacy of image. This emphasis serves to free him from the subjectivist and positivist theoretical assumptions which bedevil most of contemporary psychology. It enables an approach to psyche which acknowledges the importance of full reflexivity and enables us to see that the idea of scientific observation which underlies the modern worldview is a mirage: we cannot perceive without being perceived: the psychic image requires participation, outside of objectivity and subjectivity. Jung's is an approach that sustains and is sustained by ambiguity and paradox.</p>
-                        </div>
-                    </div>
-                    
-                    <h2 class="section-title">Dreamwork</h2>
-                    <div class="article-card">
-                        <div class="article-header">The Paradoxical Psychology of Dreams</div>
-                        <div class="article-content">
-                            <p>The dream is an inhabitant of two contradictory realms at one and the same time. It is true that the dream is full of images of people, things, landscapes that we know in our conscious lives, but it is generated in the literally unknowable unconscious. It appears to us, as we return to the dayworld, as a jumbled piece of nonsense simply because the unconscious does not speak the language of the conscious, even when it uses the imagery of the conscious world. We can, sometimes, understand the dream, but only when we discard all the analytical tricks of thinking we have laboriously learned, and trust in our not-knowing, which, when we are lucky, invites the unconscious itself to help us.</p>
-                            <p>Jung rejected any dogmatic theory of dream interpretation. Nonetheless Jungians work on the assumption that dreams have meanings, and that a properly interpreted dream will add something important to our conscious knowledge. This means of course that the dream will never tell us something that we already know. If a series of dreams seems to be making the same point over and over again, it is because we have not understood what that point is.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Useful Links Column -->
-                <div>
-                    <div class="links-card">
-                        <h3 class="section-title">Useful Links</h3>
-                        
-                        <p>Training organisations in the UK:</p>
-                        <ul class="links-list">
-                            <li><a href="http://www.igap.co.uk/" target="_blank" rel="noopener noreferrer">Independent Group of Analytical Psychologists</a></li>
-                            <li><a href="http://www.aja.dircon.co.uk/" target="_blank" rel="noopener noreferrer">Association of Jungian Analysts</a></li>
-                            <li><a href="http://www.jungian-analysis.org/" target="_blank" rel="noopener noreferrer">Society of Analytical Psychology</a></li>
-                            <li><a href="http://www.gaps.co.uk/" target="_blank" rel="noopener noreferrer">Guild of Analytical Psychology and Spirituality</a></li>
-                            <li><a href="http://www.wmip.org/index.html" target="_blank" rel="noopener noreferrer">West Midlands Institute of Psychotherapy</a></li>
-                        </ul>
-                        
-                        <p>Other UK Jungian sites:</p>
-                        <ul class="links-list">
-                            <li><a href="http://www.jungclub-london.org/" target="_blank" rel="noopener noreferrer">C.G. Jung Analytical Psychology Club, London</a></li>
-                            <li><a href="http://www.essex.ac.uk/centres/psycho" target="_blank" rel="noopener noreferrer">Centre for Psychoanalytic Studies at University of Essex</a></li>
-                            <li><a href="http://www.guildofpastoralpsychology.org.uk/" target="_blank" rel="noopener noreferrer">Guild of Pastoral Psychology</a></li>
-                        </ul>
-                        
-                        <p>International Jungian sites:</p>
-                        <ul class="links-list">
-                            <li><a href="http://www.iaap.org/" target="_blank" rel="noopener noreferrer">International Association for Analytical Psychology</a></li>
-                            <li><a href="https://www.isapzurich.com/" target="_blank" rel="noopener noreferrer">Jung Institute (Zurich)</a></li>
-                            <li><a href="http://www.cgjungpage.org/" target="_blank" rel="noopener noreferrer">CGJung Page</a></li>
-                            <li><a href="http://www.jungianstudies.org/" target="_blank" rel="noopener noreferrer">International Association for Jungian Studies</a></li>
-                            <li><a href="https://www.isapzurich.com/" target="_blank" rel="noopener noreferrer">ISAP (Zurich)</a></li>
-                        </ul>
-                        
-                        <p>Jungian journals:</p>
-                        <ul class="links-list">
-                            <li><a href="http://www.jungclub-london.org/harvest.htm" target="_blank" rel="noopener noreferrer">Harvest</a></li>
-                            <li><a href="http://www.jungian-analysis.org/journal.htm" target="_blank" rel="noopener noreferrer">Journal of Analytical Psychology</a></li>
-                        </ul>
-                        
-                        <p>Archetypal Psychology sites:</p>
-                        <ul class="links-list">
-                            <li><a href="http://www.springaudiojournal.com/" target="_blank" rel="noopener noreferrer">Spring Journal</a></li>
-                            <li><a href="http://www.pacifica.edu/" target="_blank" rel="noopener noreferrer">Pacifica Graduate Institute</a></li>
-                        </ul>
-                        
-                        <p>Other useful sites:</p>
-                        <ul class="links-list">
-                            <li><a href="http://davidholtonline.com/david-holt.php" target="_blank" rel="noopener noreferrer">David Holt on-line</a></li>
-                            <li><a href="http://www.levity.com/alchemy/index.html" target="_blank" rel="noopener noreferrer">Alchemy website and Virtual Library</a></li>
-                            <li><a href="http://www.webcom.com/%7egnosis/" target="_blank" rel="noopener noreferrer">Gnosis Archive</a></li>
-                            <li><a href="http://www.pitt.edu/%7edash/folktexts.html" target="_blank" rel="noopener noreferrer">Folklore and Mythology electronic texts</a></li>
-                            <li><a href="http://www.pantheon.org/mythica.html" target="_blank" rel="noopener noreferrer">Encyclopedia Mythica</a></li>
-                            <li><a href="http://www.perseus.tufts.edu/texts.html" target="_blank" rel="noopener noreferrer">Perseus Classical Texts and Translations</a></li>
-                            <li><a href="http://www.northvegr.org/lore/grimmst/index.php" target="_blank" rel="noopener noreferrer">Grimm's Teutonic Mythology</a></li>
-                            <li><a href="http://www.surlalunefairytales.com/" target="_blank" rel="noopener noreferrer">Sur la Lune fairy tales</a></li>
-                            <li><a href="http://www.typologycentral.com/" target="_blank" rel="noopener noreferrer">Typologycentral (Great resource for typology)</a></li>
-                        </ul>
-                    </div>
+<div class="resources-grid">
+    <!-- Articles Column -->
+    <div>
+        <div class="article-card">
+            <div class="article-header">Publications & conference talks</div>
+            <div class="article-content">
+                <div class="summary-title">'Two Souls Alas': Jung's Two Personalities and the Making of Analytical Psychology<br>Winner of International Assocation for Jungian Studies Best Book of 2019</div>
+                <p><img alt="Two Souls Alas" class="float-right" src="images/book.jpg" height="270" width="170">"In forty five years inhabiting the Jungian field, I've found very few books to be game changers. This is one... a masterly rejig of analytical psychology that bears the hallmarks of an original mind, a brave soul, and a terrific writer. Never mind that Saban ruffles your Jungian feathers! It is vital that all serious analysts and scholars get into this material as quickly and as deeply as possible."</p>
+                <p>- Professor Andrew Samuels (Jung and the post-Jungians, The Political Psyche)</p>
+                <p>"A compelling read in delightfully lucid argument, this is the book for Jungians who care about the fate of Jungian psychology in the twentyfirst century. By sympathetic and imaginative study of Jung's writings and life, Saban explores what is necessary in the ideas and gives a coherent picture of what is contradictory and problematic. Jungian psychology is gently eased on its way, no longer mired in the biography of a troubled European. 'Two Souls Alas' frees the vital work of Jungian individuation into its true calling: addressing the violence and splitting of politics, culture and nature today."</p>
+                <p>- Susan Rowland (PhD), Author of Jung as a Writer (2005) and Jung: A Feminist Revision (2002), core faculty, Pacifica Graduate Institute, California.</p>
+                <div style="clear: both;">
+                    <a class="float-left" href="https://www.amazon.co.uk/Two-Souls-Alas-Personalities-Analytical/dp/1630517488/ref=sr_1_1?keywords=two+souls+alas+saban&qid=1568974465&s=gateway&sr=8-1"><img alt="Purchase on Amazon" src="images/amazon.jpg" width="64" height="64"></a>
+                    <p style="margin-left: 80px;">You can order the book <a href="https://www.amazon.co.uk/Two-Souls-Alas-Personalities-Analytical/dp/1630517488/ref=sr_1_1?keywords=two+souls+alas+saban&qid=1568974465&s=gateway&sr=8-1">here</a></p>
                 </div>
             </div>
         </div>
-    </main>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Mark Saban. All Rights Reserved.</p>
-            <p>Website created by Gabriel Saban</p>
+        <div class="article-card">
+            <div class="article-header">Video talks & interviews</div>
+            <div class="article-content">
+                <p><a href="https://youtu.be/zIhMX-44uRs">"Two Jungs: Two Sciences?"</a><br>A talk about Jung's complex and ambigous relationship with science.</p>
+                <p><a href="https://youtu.be/6yISrxZ_p_0">"Secrets and Lies"</a><br>A talk about the role of the secret in the demise of the Freud/Jung relationship. Based on a chapter from "Two Souls Alas..."</p>
+                <p><a href="https://www.academia.edu/video/lBMqR1">"Folie-à-Deux? Archetypal and Personal Dimensions in Clinical Work: The Case of Jung"</a><br>A version of Chapter 6 of "Two Souls Alas..."</p>
+                <p><a href="https://www.youtube.com/watch?v=FP-MPJRvkZw">An Interview</a> with Murray Stein</p>
+                <p><a href="https://www.youtube.com/watch?v=MHLHxMMbLJw">An Interview</a> with Laura London</p>
+            </div>
         </div>
-    </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const headers = document.querySelectorAll('.article-header');
+        <div class="article-card">
+            <div class="article-header">Conference papers</div>
+            <div class="article-content">
+                <p>"Theatre and Psyche" at International Conference of the Association of Jungian Studies "Psyche and Imagination" Conference, Greenwich, 6-9th July 2006</p>
+                <p>"Fleshing Out The Psyche" at "Dionysus, Body, Enactment" Conference, Sesame Institute, London 26 April 2008</p>
+                <p>"Performing the Self" at The Fifth International Conference on the Dialogical Self, Cambridge, August 26-29th 2008 wwwculturedialogue.org/drupal/en/node/782</p>
+                <p>"Entertaining the Stranger: Otherness in Jung, Hillman and Waldenfels" at International Conference of the International Association of Jungian Studies "Psyche Power and Society" 9-12th July 2009</p>
+                <p>"Playing the Other" at Playing the Other Conference, Sesame Institute, London May 8th 2010"</p>
+                <p>"The Dis/enchantment of C.G. Jung" at the First Regional Conference of the International Association for Jungian Studies, London July 15th - 16th 2011</p>
+                <p>"The Tautegorical Imperative: Mythos and Logos in Jung and Giegerich, Hegel and Schelling" at First Conference of the International Society for Psychology as the Discipline of Interiority, Berlin July 23rd-25th 2012</p>
+                <p>"Ambiguating Jung" at Nineteenth Triannual Congress of the International Association for Analytical Psychology (IAAP), Copenhagen, Denmark, August 18-23, 2013.</p>
+                <p>"MDR – A posthumous creation myth" IAAP/IAJS Conference, Yale July 9, 2014</p>
+                <p>"The dissociated psyche and its politics" at IAAP Analysis and Activism Conference, Rome 3-6 December 2015</p>
+                <p>"The figures speak because they want to: A Dionysian perspective on analytical psychology" at IAJS Conference: Ecstatic ancient/archaic thought and Analytical Psychology, London 15-16th July 2016</p>
+                <p>"Individuating Individuation - Simondon brought to bear on Jung" at Holism: possibilities and problems Conference, University of Essex, Colchester 8 - 10 September 2017</p>
+                <p>"Inside-Out: Jung's myth of interiority - a conundrum?" at Who is My Jung? Conference, British Library, London 11th November 2017</p>
+                <p>"Simondon & Jung: A psychosocial individuation" at Association for Psychosocial Studies Biennial Conference, Bournemouth University 2nd to 5th April 2018</p>
+                <p>"A (Jungian) fate worse than death – erasure through interiorisation" at Feminist Views from Somewhere Conference, London 6th July 2018</p>
+                <p>"The Transindividual: exploring the space between inner and outer individual and social" Plenary address at IAAP/IAJS Conference, Stuttgart 2nd-5th August 2018</p>
+                <p>"Theatre: highlighting the psychosocial in the clinic" Association for Psychosocial Studies Biennial Conference, Birkbeck University, London, 16th May 2019</p>
+                <p>"Two Jungs: Two Sciences?" Plenary Address, International Association for Jungian Studies Triannual Conference, Duquesne University March 18th-21st 2021</p>
+                <p>"Emotion and the Transindividual: The Collective Unconscious as a Dimension of Affectivity" at 'I feel therefore I am' 75th Anniversary Conference, The Jung Institute, Küsnacht, Switzerland, 30th June-2nd July 2023</p>
+            </div>
+        </div>
+
+        <div class="article-card">
+            <div class="article-header">Papers in journals</div>
+            <div class="article-content">
+                <p>Theatre and Psyche Harvest (51: 1, 2005)</p>
+                <p>Entertaining the Stranger, Journal of Analytical Psychology, 2011, 56, 92–108</p>
+                <p>The Dis/Enchantment of C G Jung, International Journal of Jungian Studies, Vol. 4, No. 1, March 2012, 21-33</p>
+                <p>A response to Jon Mills' paper, 'Jung's Metaphysics', International Journal of Jungian Studies, 2014, Volume 6, Issue 3</p>
+                <p>A response to David Tacey's 'James Hillman: The unmaking of a psychologist', Journal of Analytical Psychology, 2014, 59, 524–528</p>
+                <p>Another serious misunderstanding: Jung, Giegerich and a premature requiem, Journal of Analytical Psychology, 2015, 60, 1, 94–113 (http://onlinelibrary.wiley.com/doi/10.1111/1468-5922.12130/pdf)</p>
+                <p>Some reflections on Barreto's response, Journal of Analytical Psychology, 2015, 60, 1, 122–125 (http://onlinelibrary.wiley.com/doi/10.1111/1468-5922.12132/pdf)</p>
+                <p>Two in one or one in two? Pushing off from Jung with Wolfgang Giegerich, Journal of Analytical Psychology, 2015 Nov; 60 (5):679-97</p>
+                <p>Jung, Winnicott and the divided psyche, Journal of Analytical Psychology, 2016, 61, 3, 329–349</p>
+                <p>A response to William Meredith-Owen, Journal of Analytical Psychology, 2016, 61, 3, 362-364</p>
+                <p>Secrete e Bugie. Un'area cieca nella psycologia junghiana, Rivista di psicologia analitica, 2017, n. 43 Volume 95</p>
+                <p>Outside-In: Jung's myth of interiority ambiguated Or - Knowing me, Knowing Jung - ahah!, Journal of Analytical Psychology, 2018 63, 368-381</p>
+                <p>Two Jungs: Two Sciences?, International Journal of Jungian Studies 15, 2023, 52–72</p>
+            </div>
+        </div>
+
+        <div class="article-card">
+            <div class="article-header">Book reviews</div>
+            <div class="article-content">
+                <p>Review of What is Soul by Wolfgang Giegerich, International Journal of Jungian Studies 5(1):February 2013 Pages 108-111</p>
+                <p>Review of Temporality and Shame: Perspectives from Psychoanalysis and Philosophy edited by Ladson Hinton and Hessel Willemsen, British Journal of Psychotherapy Volume 35, Issue 4 November 2019 Pages 652-655</p>
+                <p>Review of Dream Symbols of the Individuation Process: Notes of C. G. Jung's Seminars on Wolfgang Pauli's dreams, by C. G. Jung (edited by Suzanne Gieser) Published by Princeton University Press, Princeton & Oxford, 2019, British Journal of Psychotherapy 37, 2 (2021) 327–349</p>
+                <p>Review of Antisemitism and analytical psychology, by Daniel Burston, Psychodynamic Practice, 2022 Vol. 28, No. 2, 224–236</p>
+            </div>
+        </div>
+
+        <div class="article-card">
+            <div class="article-header">Chapters in books</div>
+            <div class="article-content">
+                <p>"Fleshing out the psyche: Jung, psychology and the body" in Jones, Raya (Ed). Body, Mind, and Healing After Jung: A Space of Questions. London: Routledge. 2010</p>
+                <p>"Staging the Self: performance, individuation and embodiment" in Jones, Raya (Ed). Body, Mind, and Healing After Jung: A Space of Questions. London: Routledge. 2010</p>
+                <p>"Ambiguating Jung" in Jean Kirsch, ed., How and Why We Still Read Jung, Routledge, London, 2013</p>
+                <p>"Science Friction: Jung, Goethe and Scientific Objectivity" in Raya Jones, ed., Jung and Science, Routledge, London, 2014</p>
+                <p>"The Dissociated Psyche and its Politics" in Carta, Adorisio & Mercurio ed. The Analyst in the Polis vol. 1, 2017 (Ebook to be found at: https://www.amazon.co.uk/dp/B06XKNVDHM/ref=sr_1_2?ie=UTF8&qid=1489940683&sr=8-2&keywords=the+analyst+in+the+polis)</p>
+                <p>"The characters speak because they want to speak: Jung Dionysus Theatre and Therapy" in Paul Bishop & Leslie Gardner eds. The Ecstatic and the Archaic, Routledge, London 2018</p>
+                <p>"Jung's 'personal myth' and the two personalities" in Raya Jones & Leslie Gardner ed. Narratives of Individuation, (Routledge, London 2019).</p>
+                <p>"Simondon and Jung: Re-thinking individuation" in Christian McMillan, Roderick Main & David Henderson eds. Holism: Possibilities and Problems, (Routledge, London 2020).</p>
+            </div>
+        </div>
+
+        <div class="article-card">
+            <div class="article-header">Edited books</div>
+            <div class="article-content">
+                <p>Analysis and Activism - Social and Political Contributions of Jungian Psychology, Ed. Emilija Kiehl, Mark Saban, & Andrew Samuels (Routledge) 2016 (Finalist American Board and Academy of Psychoanalysis Book Prize, Nominated Gradiva Award for Best Edited Book)</p>
+            </div>
+        </div>
+        
+        <!-- Add Tautegorical, Theatre & Psyche, and Dreamwork sections -->
+        <h2 class="section-title">Tautegorical Imperative</h2>
+        <div class="article-card">
+            <div class="article-header">The Tautegorical Imperative: a paper on Giegerich and Myth</div>
+            <div class="article-content">
+                <a href="#" download="Tautegoricalimperative.pdf"><img alt="Download PDF" src="images/pdf.png" width="64" height="64" class="pdf-icon-right"></a>
+                <h2>Preamble (September 2013)</h2>
+                <p><i>In July 2012 I attended the inaugural conference of the International Society for Psychology as the Discipline of Interiority (ISPDI). I delivered a paper entitled "The Tautegorical Imperative: Mythos and Logos in Jung and Giegerich, Hegel and Schelling".</i></p>
+                <p><i>After a lengthy and animated online debate (in the online Forum of the ISPDI), on September 19th 2012 Giegerich published (on the website of the ISPDI) a thirty five page rebuttal of my position(s). For several years this paper was available at the website, but recently it seems to have been taken down.</i></p>
+                <p><i>In the wake of this, several people have privately asked me if they could read my original paper. I have therefore decided to make it available here.</i></p>
+                <p><i>Those interested in further developments might also like to read an article by Sean McGrath, published in June 2013 in the International Journal for Jungian Studies, entitled 'The question concerning metaphysics: a Schellingian intervention in analytical psychology'</i></p>
+                <h2>The Tautegorical Imperative: Mythos and Logos in Jung and Giegerich, Hegel and Schelling</h2>
+                <p>In Wolfgang Giegerich's 2012 book, What is Soul, he describes his psychology as 'pushing off' from Hillman's Archetypal Psychology, in much the same way that Archetypal Psychology itself pushed off from Jung's analytical psychology. The full extent of this 'pushing off' was revealed twenty years ago, at a festival of Archetypal Psychology in honour of HIllman, where Giegerich delivered his milestone paper entitled, 'Killings: psychology's Platonism and the missing link to reality,' which gave notice of a radically different psychological perspective, to be given broader and more substantial form two years later in The Souls' Logical Life, and developed in numerous books and articles in the years since then.</p>
+                <p>It is noteworthy however that the sacred cow which Giegerich chose to sacrifice in 1992 was the pivotal and central place of myth in Hillman's imaginal psychology. In Killings, Giegerich asks "But is archetypal psychology really a psychology with Gods? Or is the talk about "Gods" in archetypal psychology merely a kind of glamorising jargon, fundamentally removed from that reality that once was referred to by the word "gods"." (Soul Violence p.190) Here he touches upon what he later developed more fully into a radical critique of the place of myth in Hillman's psychology.</p>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Short paper on Theatre & Psyche</h2>
+        <div class="article-card">
+            <div class="article-header">Theatre and Psyche</div>
+            <div class="article-content">
+                <a href="#" download="theatreandpsyche.pdf"><img alt="Download PDF" src="images/pdf.png" width="64" height="64" class="pdf-icon-right"></a>
+                <h2>Mark Saban</h2>
+                <p><i>Dedicated to the memory of the late David Holt, long-term stalwart of the O.P.S. For over 30 years his work returned again and again to the questions that psyche and theatre open up for each other. This short paper is, I hope, in the spirit of that work.</i></p>
+                <h2>Image, Psyche, Logos</h2>
+                <p>At the heart of Jung's psychology is his emphasis on the primacy of image. This emphasis serves to free him from the subjectivist and positivist theoretical assumptions which bedevil most of contemporary psychology. It enables an approach to psyche which acknowledges the importance of full reflexivity and enables us to see that the idea of scientific observation which underlies the modern worldview is a mirage: we cannot perceive without being perceived: the psychic image requires participation, outside of objectivity and subjectivity. Jung's is an approach that sustains and is sustained by ambiguity and paradox.</p>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Dreamwork</h2>
+        <div class="article-card">
+            <div class="article-header">The Paradoxical Psychology of Dreams</div>
+            <div class="article-content">
+                <p>The dream is an inhabitant of two contradictory realms at one and the same time. It is true that the dream is full of images of people, things, landscapes that we know in our conscious lives, but it is generated in the literally unknowable unconscious. It appears to us, as we return to the dayworld, as a jumbled piece of nonsense simply because the unconscious does not speak the language of the conscious, even when it uses the imagery of the conscious world. We can, sometimes, understand the dream, but only when we discard all the analytical tricks of thinking we have laboriously learned, and trust in our not-knowing, which, when we are lucky, invites the unconscious itself to help us.</p>
+                <p>Jung rejected any dogmatic theory of dream interpretation. Nonetheless Jungians work on the assumption that dreams have meanings, and that a properly interpreted dream will add something important to our conscious knowledge. This means of course that the dream will never tell us something that we already know. If a series of dreams seems to be making the same point over and over again, it is because we have not understood what that point is.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Useful Links Column -->
+    <div>
+        <div class="links-card">
+            <h3 class="section-title">Useful Links</h3>
             
-            headers.forEach(header => {
-                header.addEventListener('click', function() {
-                    // Toggle active class on the header
-                    const wasActive = this.classList.contains('active');
-                    
-                    // First close all sections
-                    headers.forEach(h => {
-                        h.classList.remove('active');
-                        h.nextElementSibling.style.display = 'none';
-                    });
-                    
-                    // If this wasn't the active one before, open it
-                    if (!wasActive) {
-                        this.classList.add('active');
-                        this.nextElementSibling.style.display = 'block';
-                    }
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+            <p>Training organisations in the UK:</p>
+            <ul class="links-list">
+                <li><a href="http://www.igap.co.uk/" target="_blank" rel="noopener noreferrer">Independent Group of Analytical Psychologists</a></li>
+                <li><a href="http://www.aja.dircon.co.uk/" target="_blank" rel="noopener noreferrer">Association of Jungian Analysts</a></li>
+                <li><a href="http://www.jungian-analysis.org/" target="_blank" rel="noopener noreferrer">Society of Analytical Psychology</a></li>
+                <li><a href="http://www.gaps.co.uk/" target="_blank" rel="noopener noreferrer">Guild of Analytical Psychology and Spirituality</a></li>
+                <li><a href="http://www.wmip.org/index.html" target="_blank" rel="noopener noreferrer">West Midlands Institute of Psychotherapy</a></li>
+            </ul>
+            
+            <p>Other UK Jungian sites:</p>
+            <ul class="links-list">
+                <li><a href="http://www.jungclub-london.org/" target="_blank" rel="noopener noreferrer">C.G. Jung Analytical Psychology Club, London</a></li>
+                <li><a href="http://www.essex.ac.uk/centres/psycho" target="_blank" rel="noopener noreferrer">Centre for Psychoanalytic Studies at University of Essex</a></li>
+                <li><a href="http://www.guildofpastoralpsychology.org.uk/" target="_blank" rel="noopener noreferrer">Guild of Pastoral Psychology</a></li>
+            </ul>
+            
+            <p>International Jungian sites:</p>
+            <ul class="links-list">
+                <li><a href="http://www.iaap.org/" target="_blank" rel="noopener noreferrer">International Association for Analytical Psychology</a></li>
+                <li><a href="https://www.isapzurich.com/" target="_blank" rel="noopener noreferrer">Jung Institute (Zurich)</a></li>
+                <li><a href="http://www.cgjungpage.org/" target="_blank" rel="noopener noreferrer">CGJung Page</a></li>
+                <li><a href="http://www.jungianstudies.org/" target="_blank" rel="noopener noreferrer">International Association for Jungian Studies</a></li>
+                <li><a href="https://www.isapzurich.com/" target="_blank" rel="noopener noreferrer">ISAP (Zurich)</a></li>
+            </ul>
+            
+            <p>Jungian journals:</p>
+            <ul class="links-list">
+                <li><a href="http://www.jungclub-london.org/harvest.htm" target="_blank" rel="noopener noreferrer">Harvest</a></li>
+                <li><a href="http://www.jungian-analysis.org/journal.htm" target="_blank" rel="noopener noreferrer">Journal of Analytical Psychology</a></li>
+            </ul>
+            
+            <p>Archetypal Psychology sites:</p>
+            <ul class="links-list">
+                <li><a href="http://www.springaudiojournal.com/" target="_blank" rel="noopener noreferrer">Spring Journal</a></li>
+                <li><a href="http://www.pacifica.edu/" target="_blank" rel="noopener noreferrer">Pacifica Graduate Institute</a></li>
+            </ul>
+            
+            <p>Other useful sites:</p>
+            <ul class="links-list">
+                <li><a href="http://davidholtonline.com/david-holt.php" target="_blank" rel="noopener noreferrer">David Holt on-line</a></li>
+                <li><a href="http://www.levity.com/alchemy/index.html" target="_blank" rel="noopener noreferrer">Alchemy website and Virtual Library</a></li>
+                <li><a href="http://www.webcom.com/%7egnosis/" target="_blank" rel="noopener noreferrer">Gnosis Archive</a></li>
+                <li><a href="http://www.pitt.edu/%7edash/folktexts.html" target="_blank" rel="noopener noreferrer">Folklore and Mythology electronic texts</a></li>
+                <li><a href="http://www.pantheon.org/mythica.html" target="_blank" rel="noopener noreferrer">Encyclopedia Mythica</a></li>
+                <li><a href="http://www.perseus.tufts.edu/texts.html" target="_blank" rel="noopener noreferrer">Perseus Classical Texts and Translations</a></li>
+                <li><a href="http://www.northvegr.org/lore/grimmst/index.php" target="_blank" rel="noopener noreferrer">Grimm's Teutonic Mythology</a></li>
+                <li><a href="http://www.surlalunefairytales.com/" target="_blank" rel="noopener noreferrer">Sur la Lune fairy tales</a></li>
+                <li><a href="http://www.typologycentral.com/" target="_blank" rel="noopener noreferrer">Typologycentral (Great resource for typology)</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
 
+{% block scripts %}
+<script src="js/links.js"></script>
+{% endblock %}

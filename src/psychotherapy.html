@@ -1,76 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mark Saban - Psychotherapy Services with a focus on Jungian Analytical Psychology.">
-    <meta name="keywords" content="Mark Saban, Psychotherapy, Jungian Analysis, Analytical Psychology, Therapy">
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="shortcut icon" href="../public/favicon.ico">
-    <title>Mark Saban - Psychotherapy</title>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <div class="contact-info">
-                <h1>Mark Saban</h1>
-                <p>Get in touch: <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
-            </div>
-            <nav>
-                <ul class="navigation">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="psychotherapy.html" class="active">Psychotherapy</a></li>
-                    <li><a href="links.html">Resources</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+{% extends "templates/base.html" %}
 
-    <main>
-        <div class="container">
-            <article>
-                <h2>What is Jungian Psychotherapy?</h2>
-                <p>
-                    Anyone can benefit from Jungian psychotherapy, but it is particularly suitable for those who wish to explore the depths and heights of life through increased consciousness.
-                </p>
-                <p>
-                    If you find that all your enthusiasm for living has dried up, that there seems to be no meaning in anything, or that your creative, playful juices have stopped flowing, then Jungian psychotherapy can help you.
-                </p>
-                <p>
-                    As we get older we all tend to become increasingly one-sided. It is common in our society, for example, to develop and value the thinking, intellectual side to the detriment of the feeling side and to privilege the material over the spiritual. However, it is precisely in the neglected, 'inferior', unconscious aspects of our psyche that the potential riches lie. Jungian psychotherapy aims to make contact with these resources through the exploration of the dream and fantasy images which also inhabit this underworld source.
-                </p>
-                <p>
-                    Analyst and analysand are partners in this enterprise. The work done in analysis comes out of a mutual process which is open-ended. There is no canonical method to be applied by a superior technician of the psyche to a passive 'patient'—only two human beings bringing everything they have to an exciting and challenging quest.
-                </p>
-            </article>
+{% block head_extra %}
+{% endblock %}
 
-            <article>
-                <h2>Jung and Psyche</h2>
-                <p>
-                    Jung's psychology is uniquely concerned with the notion of Soul.
-                </p>
-                <p>
-                    Born in Switzerland in 1875, he first worked as a psychiatrist at the renowned Burghölzli Institute. Here he realized that the apparently senseless fantasies of the patients reflected important unconscious contents and that healing could only occur if these images were taken seriously.
-                </p>
-                <p>
-                    For a period, he worked with Freud in the newly emerging psychoanalytic movement, but he became aware that Freud's reductive approach differed profoundly from his own.
-                </p>
-                <p>
-                    He therefore began to develop what he called Analytical Psychology. As he described in his autobiography, <em>Memories, Dreams, Reflections</em>, much of the basis for this new approach to psyche came out of the difficult period after his break with Freud, when he made his own descent into the underworld of the unconscious psyche.
-                </p>
-                <p>
-                    Over the next forty years, Jung established Analytical Psychology as a radical alternative to psychoanalysis. Jung emphasized the importance of the mythic, imaginal background to the psyche, best approached through dream and fantasy. Rather than delve exclusively into the childhood memories of his patients, Jung preferred to look forward, asking the question, "What does the soul want of this person?"
-                </p>
-                <img src="images/Jung.jpg" alt="Carl Jung" class="content-img">
-            </article>
-        </div>
-    </main>
+{% set title = "Mark Saban - Psychotherapy" %}
+{% set description = "Mark Saban - Psychotherapy Services with a focus on Jungian Analytical Psychology." %}
+{% set keywords = "Mark Saban, Psychotherapy, Jungian Analysis, Analytical Psychology, Therapy" %}
+{% set active_page = "psychotherapy" %}
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Mark Saban. All Rights Reserved.</p>
-        </div>
-    </footer>
-</body>
-</html>
+{% block content %}
+<article>
+    <h2>What is Jungian Psychotherapy?</h2>
+    <p>
+        Anyone can benefit from Jungian psychotherapy, but it is particularly suitable for those who wish to explore the depths and heights of life through increased consciousness.
+    </p>
+    <p>
+        If you find that all your enthusiasm for living has dried up, that there seems to be no meaning in anything, or that your creative, playful juices have stopped flowing, then Jungian psychotherapy can help you.
+    </p>
+    <p>
+        As we get older we all tend to become increasingly one-sided. It is common in our society, for example, to develop and value the thinking, intellectual side to the detriment of the feeling side and to privilege the material over the spiritual. However, it is precisely in the neglected, 'inferior', unconscious aspects of our psyche that the potential riches lie. Jungian psychotherapy aims to make contact with these resources through the exploration of the dream and fantasy images which also inhabit this underworld source.
+    </p>
+    <p>
+        Analyst and analysand are partners in this enterprise. The work done in analysis comes out of a mutual process which is open-ended. There is no canonical method to be applied by a superior technician of the psyche to a passive 'patient'—only two human beings bringing everything they have to an exciting and challenging quest.
+    </p>
+</article>
+
+<article>
+    <h2>Jung and Psyche</h2>
+    <p>
+        Jung's psychology is uniquely concerned with the notion of Soul.
+    </p>
+    <p>
+        Born in Switzerland in 1875, he first worked as a psychiatrist at the renowned Burghölzli Institute. Here he realized that the apparently senseless fantasies of the patients reflected important unconscious contents and that healing could only occur if these images were taken seriously.
+    </p>
+    <p>
+        For a period, he worked with Freud in the newly emerging psychoanalytic movement, but he became aware that Freud's reductive approach differed profoundly from his own.
+    </p>
+    <p>
+        He therefore began to develop what he called Analytical Psychology. As he described in his autobiography, <em>Memories, Dreams, Reflections</em>, much of the basis for this new approach to psyche came out of the difficult period after his break with Freud, when he made his own descent into the underworld of the unconscious psyche.
+    </p>
+    <p>
+        Over the next forty years, Jung established Analytical Psychology as a radical alternative to psychoanalysis. Jung emphasized the importance of the mythic, imaginal background to the psyche, best approached through dream and fantasy. Rather than delve exclusively into the childhood memories of his patients, Jung preferred to look forward, asking the question, "What does the soul want of this person?"
+    </p>
+    <img src="images/Jung.jpg" alt="Carl Jung" class="content-img">
+</article>
+{% endblock %}

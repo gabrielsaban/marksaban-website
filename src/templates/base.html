@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ description }}">
+    <meta name="keywords" content="{{ keywords }}">
+    <meta name="author" content="Gabriel Saban">
+    <link rel="shortcut icon" href="../public/favicon.ico">
+    <link rel="stylesheet" href="css/styles.css">
+    {% if page_specific_css %}
+    <link rel="stylesheet" href="{{ page_specific_css }}">
+    {% endif %}
+    <title>{{ title }}</title>
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="contact-info">
+                <h1>Mark Saban</h1>
+                <p>Get in touch: <a href="mailto:msaban@ntlworld.com">msaban@ntlworld.com</a></p>
+            </div>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="index.html" {% if active_page == 'home' %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="contact.html" {% if active_page == 'contact' %}class="active"{% endif %}>Contact</a></li>
+                    <li><a href="psychotherapy.html" {% if active_page == 'psychotherapy' %}class="active"{% endif %}>Psychotherapy</a></li>
+                    <li><a href="links.html" {% if active_page == 'resources' %}class="active"{% endif %}>Resources</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mark Saban. All Rights Reserved.</p>
+            {% block footer_extra %}{% endblock %}
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html> 
