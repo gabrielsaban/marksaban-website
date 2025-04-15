@@ -55,6 +55,11 @@ def links():
                           playing_content=playing_content,
                           dreamwork_content=dreamwork_content)
 
+# Health check endpoint for UptimeRobot
+@app.route('/ping')
+def ping():
+    return "OK", 200
+
 # Serve static files from src directory
 @app.route('/css/<path:filename>')
 def css(filename):
