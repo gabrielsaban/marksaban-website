@@ -3,3 +3,4 @@ Werkzeug==2.3.7
 Jinja2==3.1.2 
 gunicorn==23.0.0
 markdown==3.8.0
+flask-compress==1.14

@@ -2,19 +2,25 @@ from flask import Flask, render_template, send_from_directory, request
 import datetime
 import os
 import markdown
+from functools import lru_cache
+from flask_compress import Compress
 
 app = Flask(__name__, 
             template_folder='src',
             static_folder='src')
+
+# Add gzip compression
+compress = Compress(app)
 
 # Add custom Jinja filter for current year
 @app.template_filter('now')
 def _now(format_):
     return datetime.datetime.now().strftime(format_)
 
-# Function to read markdown files
+# Function to read markdown files with caching
+@lru_cache(maxsize=32)
 def read_markdown_file(filename):
-    """Read a markdown file and convert to HTML."""
+    """Read a markdown file and convert to HTML with caching."""
     file_path = os.path.join('src', 'text', filename)
     if os.path.exists(file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
