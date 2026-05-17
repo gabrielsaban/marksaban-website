@@ -6,10 +6,13 @@
     <meta name="description" content="{{ description }}">
     <meta name="keywords" content="{{ keywords }}">
     <meta name="author" content="Gabriel Saban">
-    {% set canonical_path = '/' if request.path in ['/', '/index.html'] else request.path %}
+    <meta name="robots" content="index, follow">
+    {% set canonical_path = '/' if request.path == '/' else request.path.rstrip('/') %}
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://marksaban.co.uk{{ canonical_path }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="{{ title }}">
@@ -17,6 +20,15 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://marksaban.co.uk{{ canonical_path }}">
     <meta property="og:image" content="https://marksaban.co.uk/images/marksaban.jpg">
+    <meta property="og:image:width" content="881">
+    <meta property="og:image:height" content="1443">
+    <meta property="og:image:alt" content="Mark Saban">
+    <meta property="og:site_name" content="Mark Saban">
+    <meta property="og:locale" content="en_GB">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="https://marksaban.co.uk/images/marksaban.jpg">
     
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="stylesheet" href="/css/styles.css">
@@ -29,21 +41,53 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Mark Saban - Psychotherapist",
-      "image": "https://marksaban.co.uk/images/marksaban.jpg",
-      "url": "https://marksaban.co.uk",
-      "telephone": "+447905628957",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Oxford",
-        "addressCountry": "UK"
-      },
-      "areaServed": "Oxford, UK",
-      "sameAs": [
-        "https://www.igap.co.uk/",
-        "https://iaap.org/",
-        "https://www.psychotherapy.org.uk/"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://marksaban.co.uk/#mark-saban",
+          "name": "Mark Saban",
+          "jobTitle": [
+            "Psychotherapist",
+            "Analytical Psychologist",
+            "Jungian Analyst"
+          ],
+          "image": "https://marksaban.co.uk/images/marksaban.jpg",
+          "url": "https://marksaban.co.uk/",
+          "worksFor": {
+            "@type": "Organization",
+            "name": "Independent Group of Analytical Psychologists",
+            "url": "https://www.igap.co.uk/"
+          },
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Oxford"
+          },
+          "sameAs": [
+            "https://www.igap.co.uk/",
+            "https://iaap.org/",
+            "https://www.psychotherapy.org.uk/"
+          ]
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://marksaban.co.uk/#practice",
+          "name": "Mark Saban - Psychotherapist",
+          "url": "https://marksaban.co.uk/",
+          "image": "https://marksaban.co.uk/images/marksaban.jpg",
+          "telephone": "+447905628957",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Oxford",
+            "addressCountry": "GB"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Oxford"
+          },
+          "founder": {
+            "@id": "https://marksaban.co.uk/#mark-saban"
+          }
+        }
       ]
     }
     </script>
@@ -60,9 +104,9 @@
             <nav>
                 <ul class="navigation">
                     <li><a href="/" {% if active_page == 'home' %}class="active"{% endif %}>Home</a></li>
-                    <li><a href="/contact.html" {% if active_page == 'contact' %}class="active"{% endif %}>Contact</a></li>
-                    <li><a href="/psychotherapy.html" {% if active_page == 'psychotherapy' %}class="active"{% endif %}>Psychotherapy</a></li>
-                    <li><a href="/links.html" {% if active_page == 'resources' %}class="active"{% endif %}>Resources</a></li>
+                    <li><a href="/contact" {% if active_page == 'contact' %}class="active"{% endif %}>Contact</a></li>
+                    <li><a href="/psychotherapy" {% if active_page == 'psychotherapy' %}class="active"{% endif %}>Psychotherapy</a></li>
+                    <li><a href="/resources" {% if active_page == 'resources' %}class="active"{% endif %}>Resources</a></li>
                 </ul>
             </nav>
         </div>
