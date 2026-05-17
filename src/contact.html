@@ -1,7 +1,7 @@
 {% extends "templates/base.html" %}
 
 {% block head_extra %}
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 {% endblock %}
 
 {% set title = "Mark Saban - Contact" %}
@@ -17,10 +17,10 @@
     <p><strong>Location:</strong> Oxford, UK</p>
 </div>
 
-<section id="map"></section>
+<section id="map" aria-label="Map showing Oxford, UK"></section>
 {% endblock %}
 
 {% block scripts %}
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="js/contact.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/js/contact.js"></script>
 {% endblock %}

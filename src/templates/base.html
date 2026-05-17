@@ -6,19 +6,20 @@
     <meta name="description" content="{{ description }}">
     <meta name="keywords" content="{{ keywords }}">
     <meta name="author" content="Gabriel Saban">
+    {% set canonical_path = '/' if request.path in ['/', '/index.html'] else request.path %}
     
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://marksaban.co.uk/{{ request.path if request.path != '/' else 'index.html' }}">
+    <link rel="canonical" href="https://marksaban.co.uk{{ canonical_path }}">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="{{ title }}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://marksaban.co.uk/{{ request.path if request.path != '/' else 'index.html' }}">
+    <meta property="og:url" content="https://marksaban.co.uk{{ canonical_path }}">
     <meta property="og:image" content="https://marksaban.co.uk/images/marksaban.jpg">
     
-    <link rel="shortcut icon" href="../public/favicon.ico">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/styles.css">
     {% if page_specific_css %}
     <link rel="stylesheet" href="{{ page_specific_css }}">
     {% endif %}
@@ -38,29 +39,12 @@
         "addressLocality": "Oxford",
         "addressCountry": "UK"
       },
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": 51.7413254,
-        "longitude": -1.2567501
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "17:00"
-      },
+      "areaServed": "Oxford, UK",
       "sameAs": [
-        "http://www.igap.co.uk/",
+        "https://www.igap.co.uk/",
         "https://iaap.org/",
         "https://www.psychotherapy.org.uk/"
-      ],
-      "priceRange": "££"
+      ]
     }
     </script>
     
@@ -75,10 +59,10 @@
             </div>
             <nav>
                 <ul class="navigation">
-                    <li><a href="index.html" {% if active_page == 'home' %}class="active"{% endif %}>Home</a></li>
-                    <li><a href="contact.html" {% if active_page == 'contact' %}class="active"{% endif %}>Contact</a></li>
-                    <li><a href="psychotherapy.html" {% if active_page == 'psychotherapy' %}class="active"{% endif %}>Psychotherapy</a></li>
-                    <li><a href="links.html" {% if active_page == 'resources' %}class="active"{% endif %}>Resources</a></li>
+                    <li><a href="/" {% if active_page == 'home' %}class="active"{% endif %}>Home</a></li>
+                    <li><a href="/contact.html" {% if active_page == 'contact' %}class="active"{% endif %}>Contact</a></li>
+                    <li><a href="/psychotherapy.html" {% if active_page == 'psychotherapy' %}class="active"{% endif %}>Psychotherapy</a></li>
+                    <li><a href="/links.html" {% if active_page == 'resources' %}class="active"{% endif %}>Resources</a></li>
                 </ul>
             </nav>
         </div>
@@ -92,7 +76,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Mark Saban. All Rights Reserved.</p>
+            <p>&copy; {{ '%Y'|now }} Mark Saban. All Rights Reserved.</p>
             {% block footer_extra %}{% endblock %}
         </div>
     </footer>

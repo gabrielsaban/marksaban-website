@@ -28,15 +28,20 @@ The site uses:
 
 1. Install dependencies:
 ```
-pip install -r requirements.txt
+make setup
 ```
 
 2. Run development server:
 ```
-python app.py
+make run
 ```
 
 3. View the site at [http://localhost:3000](http://localhost:3000)
+
+4. Run smoke checks:
+```
+make check
+```
 
 ## SEO Optimizations
 
